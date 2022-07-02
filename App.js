@@ -69,24 +69,28 @@ export default function App() {
   const scheme = useColorScheme();
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-        {Platform.OS === "web" ? (
-          <Drawer.Navigator
-            activeColor="#f0edf6"
-            inactiveColor="#3e2465"
-            barStyle={{ backgroundColor: "#694fad" }}
-          >
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
-            <Drawer.Screen name="View receipts" component={SavedReceipt} />
-          </Drawer.Navigator>
-        ) : (
-          <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
-            <Tab.Screen name="View receipts" component={SavedReceipt} />
-          </Tab.Navigator>
-        )}
+
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {
+          Platform.OS === "web" ?
+            (
+              <Drawer.Navigator
+                backgroundColor="#252D3A"
+              >
+                <Drawer.Screen name="Home" component={HomeScreen} />
+                <Drawer.Screen name="Profile" component={ProfileScreen} />
+                <Drawer.Screen name="View receipts" component={SavedReceipt} />
+              </Drawer.Navigator>
+            ) :
+            (
+              <Tab.Navigator>
+                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Profile" component={ProfileScreen} />
+                <Tab.Screen name="View receipts" component={SavedReceipt} />
+              </Tab.Navigator>
+            )
+
+        }
       </NavigationContainer>
 
       {/* <Text>bvhjsdbv</Text> */}
