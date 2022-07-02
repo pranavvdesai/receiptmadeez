@@ -22,8 +22,6 @@ import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
 // import Card from "./components/Card";
 // import VerticalCard from "./components/VerticalCard";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   NavigationContainer,
   DefaultTheme,
@@ -39,7 +37,6 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import LoginScreen from "./screens/LoginScreen";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useColorScheme } from "react-native";
 
 const Stack = createNativeStackNavigator();

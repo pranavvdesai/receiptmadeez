@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import Card from '../components/ReceiptCard';
 import { Box, Center, Flex, Spacer } from 'native-base';
 import { NativeBaseProvider } from 'native-base';
+import ReceiptCard from '../components/ReceiptCard';
 
 export function SavedReceipt() {
     return (
@@ -19,18 +20,10 @@ export function SavedReceipt() {
             direction='column'
         >
             <Box flex={1} flexDirection='row' flexWrap='wrap'>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <ReceiptCard />
+                <ReceiptCard />
+                <ReceiptCard />
+                <ReceiptCard />
             </Box>
         </View>
     )
