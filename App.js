@@ -52,7 +52,8 @@ const MyTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: "red",
-    background: "#081220",
+    background: "#181818",
+    card: "#13131A",
   },
 };
 
@@ -66,28 +67,29 @@ export default function App() {
   const scheme = useColorScheme();
   return (
     <NativeBaseProvider>
-
-      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {
-          Platform.OS === "web" ?
-            (
-              <Drawer.Navigator
-                backgroundColor="#252D3A"
-              >
-                <Drawer.Screen name="Home" component={HomeScreen} />
-                <Drawer.Screen name="Profile" component={ProfileScreen} />
-                <Drawer.Screen name="View receipts" component={SavedReceipt} />
-              </Drawer.Navigator>
-            ) :
-            (
-              <Tab.Navigator>
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Profile" component={ProfileScreen} />
-                <Tab.Screen name="View receipts" component={SavedReceipt} />
-              </Tab.Navigator>
-            )
-
-        }
+      <NavigationContainer theme={MyTheme}>
+        {Platform.OS === "web" ? (
+          <Drawer.Navigator
+            backgroundColor="#060606"
+            screenOptions={{
+              headerStyle: { backgroundColor: "#060606", borderBottomColor: "#060606" },
+              headerTintColor: "#fff",
+              drawerActiveBackgroundColor: "#363636",
+              drawerLabelStyle: { color: "#fff" },
+              drawerStyle: { backgroundColor: "#060606" },
+            }}
+          >
+            <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="View receipts" component={SavedReceipt} />
+          </Drawer.Navigator>
+        ) : (
+          <Tab.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen name="View receipts" component={SavedReceipt} />
+          </Tab.Navigator>
+        )}
       </NavigationContainer>
 
       {/* <Text>bvhjsdbv</Text> */}

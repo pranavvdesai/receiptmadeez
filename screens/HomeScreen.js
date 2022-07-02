@@ -39,12 +39,22 @@ export function HomeScreen() {
         overflowX: "hidden",
       }}
       direction="column"
-      bg="red.500"
+      bg="#181818"
     >
       <Box maxWidth="100%">
         <HCard />
       </Box>
-      <Box flex={1} flexDirection="row" mx="20" flexWrap="wrap" justifyContent="space-between" >
+      <Box
+        flex={1}
+        flexDirection="row"
+        mx="20"
+        flexWrap="wrap"
+        justifyContent={{
+          md: "space-between",
+          base: "center",
+        }}
+        alignItems="center"
+      >
         <Card />
         <Card />
         <Card />

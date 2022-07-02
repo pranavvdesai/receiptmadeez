@@ -1,6 +1,5 @@
 import * as React from "react";
 
-
 import {
   Text,
   Link,
@@ -25,40 +24,42 @@ import {
 } from "native-base";
 export default function () {
   return (
-    <Box alignItems="center">
+    <Box alignItems="center" justifyContent="center">
       <Box
         maxW="80"
         rounded="lg"
         overflow="hidden"
-        borderColor="coolGray.200"
+        bg="#13131A"
         borderWidth="1"
         _web={{
           shadow: 2,
           borderWidth: 0,
         }}
+        mb="4"
       >
-        <Box>
+        <Box p="2">
           <AspectRatio w="100%" ratio={16 / 9}>
             <Image
               source={{
                 uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
               }}
               alt="image"
+              rounded="lg"
             />
           </AspectRatio>
         </Box>
-        <Stack p="4" space={3}>
+        <Stack p="4" space={3} bg="#13131A">
           <Stack space={2}>
-            <Heading size="md" ml="-1">
+            <Heading size="sm" ml="-1" color="rgb(155, 81, 224)">
               The Garden City
             </Heading>
             <Text
-              fontSize="xs"
+              fontSize="sm"
               _light={{
-                color: "violet.500",
+                color: "white",
               }}
               _dark={{
-                color: "violet.400",
+                color: "black",
               }}
               fontWeight="500"
               ml="-0.5"
@@ -67,9 +68,9 @@ export default function () {
               The Silicon Valley of India.
             </Text>
           </Stack>
-          <Text>
+          <Text color="#B8B8CC" fontSize="xs">
             Bengaluru (also called Bangalore) is the center of India's high-tech
-            industry. The city is also known for its parks and nightlife.
+            industry.
           </Text>
           <HStack alignItems="center" space={4} justifyContent="space-between">
             <HStack alignItems="center">
@@ -84,6 +85,14 @@ export default function () {
               </Text>
             </HStack>
           </HStack>
+          <Button
+            size="sm"
+            color="white"
+            bg="rgb(155, 81, 224)"
+            colorScheme="rgb(155, 81, 224)"
+          >
+            Buy Now
+          </Button>
         </Stack>
       </Box>
     </Box>
