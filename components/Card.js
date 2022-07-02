@@ -1,4 +1,6 @@
 import * as React from "react";
+import React from 'react';
+import { VStack, HStack, Avatar, Image, Text, NativeBaseProvider, AspectRatio, Center, Box, Stack, Heading, View, theme } from "native-base";
 
 import {
   Text,
