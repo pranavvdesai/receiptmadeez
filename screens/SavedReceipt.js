@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native';
-import Card from '../components/Card';
+import Card from '../components/ReceiptCard';
 import { Box, Center, Flex, Spacer } from 'native-base';
 import { NativeBaseProvider } from 'native-base';
 
