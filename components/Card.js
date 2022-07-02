@@ -4,7 +4,12 @@ import { VStack, HStack, Avatar, Image, Text, NativeBaseProvider, AspectRatio, C
 export default function () {
     return (
         <View>
-            <Box bg={theme}shadow={2} rounded="lg" width={300} height={100}>
+            <Box bg={theme} shadow={2} rounded="lg"
+                borderColor='white' borderWidth={2}
+                width={300} height={100}
+                background="#252D3A"
+                margin='20'
+            >
                 <Stack space={3} p={[4, 4, 8]}>
                     <Heading
                         flex="1"
@@ -12,7 +17,9 @@ export default function () {
                         noOfLines={2}
                     >
                         <Center>
-                            <Text>
+                            <Text
+                                color={'white'}
+                            >
                                 Electronics
                             </Text>
                         </Center>

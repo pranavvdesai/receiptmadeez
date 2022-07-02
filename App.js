@@ -58,9 +58,7 @@ export default function App() {
           Platform.OS === "web" ?
             (
               <Drawer.Navigator
-                activeColor="#f0edf6"
-                inactiveColor="#3e2465"
-                barStyle={{ backgroundColor: '#694fad' }}
+                backgroundColor="#252D3A"
               >
                 <Drawer.Screen name="Home" component={HomeScreen} />
                 <Drawer.Screen name="Profile" component={ProfileScreen} />
