@@ -56,7 +56,7 @@ export default function App() {
           </HStack>
           <Link href="https://docs.nativebase.io" isExternal>
             <Text color="primary.500" underline fontSize={"xl"}>
-              Learn NativeBase
+              Learn hv hu
             </Text>
           </Link>
           <ToggleDarkMode />
