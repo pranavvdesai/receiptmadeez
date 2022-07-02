@@ -20,7 +20,22 @@ import {
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
-import login from "./assets/login.svg";
+// import Card from "./components/Card";
+// import VerticalCard from "./components/VerticalCard";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { HomeScreen } from "./screens/HomeScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SavedReceipt } from "./screens/SavedReceipt";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
+import LoginScreen from "./screens/LoginScreen";
+
+const Stack = createNativeStackNavigator();
+
 // Define the config
 const config = {
   useSystemColorMode: false,
@@ -29,55 +44,36 @@ const config = {
 
 // extend the theme
 export const theme = extendTheme({ config });
-
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Box flex="1" safeAreaTop height="100%" background="" width="100%">
-        <Box width="100%" p="4">
-          LOGO
-        </Box>
-        <Box flex="1" p="4">
-          <Flex direction={{
-            base: "column",
-            lg: "row",
-          }} justifyContent="space-between" height="100%">
-            <Box p="2">{/* <Image source={login} size={530} /> */}</Box>
-            <Box p="10" m="[0,4]" background="black" width={{
-              base: "100%",
-              lg: "50%",
-            }} rounded="xl">
-              <Center>
-                <Text color="white" fontSize="5xl" m="3">
-                  Title
-                </Text>
-                <Text color="white" mb="4">
-                  wenfuiewf wiefewbfiubf fewifbewuibfewufbewiufbewif
-                </Text>
-                <Box mb="4" w="100%">
-                  <FormControl mb="5">
-                    <FormControl.Label>Project Title</FormControl.Label>
-                    <Input placeholder="e-mail" color="white" />
-                    <FormControl.HelperText>
-                      Give your project a title.
-                    </FormControl.HelperText>
-                  </FormControl>
-                  <FormControl mb="5">
-                    <FormControl.Label>Project Title</FormControl.Label>
-                    <Input placeholder="e-mail" color="white" />
-                    <FormControl.HelperText>
-                      Give your project a title.
-                    </FormControl.HelperText>
-                  </FormControl>
-                </Box>
-
-                <Button width="100%" colorScheme="secondary">
-                  Sign up
-                </Button>
-              </Center>
-            </Box>
-          </Flex>
-        </Box>
+      <Box flex={1} h="full">
+        <NavigationContainer bg="white">
+          {Platform.OS === "web" ? (
+            <Drawer.Navigator
+              screenOptions={
+                {
+                  // sceneContainerStyle: {
+                  //   backgroundColor: "black",
+                  //   flex: 1,
+                  // },
+                }
+              }
+            >
+              <Drawer.Screen name="Home" component={HomeScreen} />
+              <Drawer.Screen name="Profile" component={ProfileScreen} />
+              <Drawer.Screen name="View receipts" component={SavedReceipt} />
+            </Drawer.Navigator>
+          ) : (
+            <Tab.Navigator>
+              <Tab.Screen name="Home" component={HomeScreen} />
+              <Tab.Screen name="Profile" component={ProfileScreen} />
+              <Tab.Screen name="View receipts" component={SavedReceipt} />
+            </Tab.Navigator>
+          )}
+        </NavigationContainer>
       </Box>
     </NativeBaseProvider>
   );
