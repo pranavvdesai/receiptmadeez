@@ -11,10 +11,16 @@ import {
   extendTheme,
   VStack,
   Box,
+  Flex,
+  Spacer,
+  FormControl,
+  Input,
+  Button,
+  Image,
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
-
+import login from "./assets/login.svg";
 // Define the config
 const config = {
   useSystemColorMode: false,
@@ -27,41 +33,52 @@ export const theme = extendTheme({ config });
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Box
-              _web={{
-                _text: {
-                  fontFamily: "monospace",
-                  fontSize: "sm",
-                },
-              }}
-              px={2}
-              py={1}
-              _dark={{ bg: "blueGray.800" }}
-              _light={{ bg: "blueGray.200" }}
-            >
-              App.js
+      <Box flex="1" safeAreaTop height="100%" background="" width="100%">
+        <Box width="100%" p="4">
+          LOGO
+        </Box>
+        <Box flex="1" p="4">
+          <Flex direction={{
+            base: "column",
+            lg: "row",
+          }} justifyContent="space-between" height="100%">
+            <Box p="2">{/* <Image source={login} size={530} /> */}</Box>
+            <Box p="10" m="[0,4]" background="black" width={{
+              base: "100%",
+              lg: "50%",
+            }} rounded="xl">
+              <Center>
+                <Text color="white" fontSize="5xl" m="3">
+                  Title
+                </Text>
+                <Text color="white" mb="4">
+                  wenfuiewf wiefewbfiubf fewifbewuibfewufbewiufbewif
+                </Text>
+                <Box mb="4" w="100%">
+                  <FormControl mb="5">
+                    <FormControl.Label>Project Title</FormControl.Label>
+                    <Input placeholder="e-mail" color="white" />
+                    <FormControl.HelperText>
+                      Give your project a title.
+                    </FormControl.HelperText>
+                  </FormControl>
+                  <FormControl mb="5">
+                    <FormControl.Label>Project Title</FormControl.Label>
+                    <Input placeholder="e-mail" color="white" />
+                    <FormControl.HelperText>
+                      Give your project a title.
+                    </FormControl.HelperText>
+                  </FormControl>
+                </Box>
+
+                <Button width="100%" colorScheme="secondary">
+                  Sign up
+                </Button>
+              </Center>
             </Box>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={"xl"}>
-              Learn hv hu
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
-      </Center>
+          </Flex>
+        </Box>
+      </Box>
     </NativeBaseProvider>
   );
 }
