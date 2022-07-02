@@ -1,22 +1,24 @@
 import React from 'react';
-import { VStack, Box, Divider } from 'native-base';
+import { VStack, HStack, Avatar, Image, Text, NativeBaseProvider, AspectRatio, Center, Box, Stack, Heading, View, theme } from "native-base";
 
 export default function () {
     return (
-        <Box border="1" borderRadius="md">
-            <VStack space="4" divider={<Divider />}>
-                <Box px="4" pt="4">
-                    NativeBase
-                </Box>
-                <Box px="4">
-                    NativeBase is a free and open source framework that enable developers
-                    to build high-quality mobile apps using React Native iOS and Android
-                    apps with a fusion of ES6.
-                </Box>
-                <Box px="4" pb="4">
-                    GeekyAnts
-                </Box>
-            </VStack>
-        </Box>
+        <View>
+            <Box bg={theme}shadow={2} rounded="lg" width={300} height={100}>
+                <Stack space={3} p={[4, 4, 8]}>
+                    <Heading
+                        flex="1"
+                        size={["md", "lg", "md"]}
+                        noOfLines={2}
+                    >
+                        <Center>
+                            <Text>
+                                Electronics
+                            </Text>
+                        </Center>
+                    </Heading>
+                </Stack>
+            </Box>
+        </View >
     );
 }
