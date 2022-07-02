@@ -21,6 +21,7 @@
     "@react-navigation/drawer": "^6.4.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
+    "axios": "^0.27.2",
     "expo": "^44.0.0",
     "expo-status-bar": "~1.2.0",
     "native-base": "3.4.0",
@@ -42,5 +43,6 @@
   },
   "homepage": "https://github.com/GeekyAnts/nativebase-templates#readme",
   "author": "Aditya Jamuar",
-  "private": true
+  "private": true,
+  "proxy": "https://invoiceg.ganeshgouru50.workers.dev"
 }
