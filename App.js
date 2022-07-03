@@ -20,6 +20,7 @@ import {
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
+
 // import Card from "./components/Card";
 // import VerticalCard from "./components/VerticalCard";
 import {
@@ -39,6 +40,7 @@ import {
 import LoginScreen from "./screens/LoginScreen";
 import AdminScreen from "./screens/AdminScreen";
 import { useColorScheme } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
@@ -67,6 +69,20 @@ const MyTheme = {
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 export default function App() {
+  const [userData, setuserData] = React.useState(null);
+  React.useEffect(() => {
+    const getUser = async () => {
+      try {
+        let temp = JSON.parse(await AsyncStorage.getItem("user"));
+        console.log(userData, "ftyg");
+        if (!temp) return;
+        setuserData(temp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, []);
   const scheme = useColorScheme();
   const [admin, setAdmin] = React.useState(false);
   React.useEffect(() => {
@@ -100,8 +116,8 @@ export default function App() {
   }, []);
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={MyTheme}>
-        {Platform.OS === "web" ? (
+      {userData == null ? (
+        <NavigationContainer theme={MyTheme}>
           <Drawer.Navigator
             backgroundColor="#060606"
             screenOptions={{
@@ -109,12 +125,14 @@ export default function App() {
                 backgroundColor: "#060606",
                 borderBottomColor: "#060606",
               },
+
               headerTintColor: "white",
               drawerActiveBackgroundColor: "#363636",
               drawerLabelStyle: { color: "#fff" },
               drawerStyle: { backgroundColor: "#060606" },
             }}
           >
+
             <Drawer.Screen name="Home" component={HomeScreen} />
             <Drawer.Screen name="Profile" component={LoginScreen} />
             <Drawer.Screen
@@ -198,3 +216,12 @@ function ToggleDarkMode() {
     </HStack>
   );
 }
+
+//  {
+//    /* <Text>bvhjsdbv</Text> */
+//  }
+//  {
+//    /* // <Box flex={1} alignItems="center" justifyContent="center" bg="red.100">
+//       //   <Text>Open up App.js to start working on your app!</Text>
+//       // </Box> */
+//  }
