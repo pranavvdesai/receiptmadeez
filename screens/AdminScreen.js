@@ -14,7 +14,7 @@ export default function AdminScreen({ navigaton }) {
     function getData() {
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
+          "https://proxyinvoicebill.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
           {
             token:
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODUyMTk4LCJzdWIiOiI4MzMyMWU5Yi0wMGViLTQ5MTAtYjcxZC1mOTVlYTVmZTEyYzkiLCJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnt9LCJyb2xlIjoiYXV0aGVudGljYXRlZCJ9.hlqEvjgBdenX57ZHsHHICa5_vFgQhKptd4MSLTtFzd8",

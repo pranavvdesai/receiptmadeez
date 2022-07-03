@@ -89,10 +89,9 @@ export default function App() {
     function getData() {
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
+          "https://proxyinvoicebill.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
           {
-            token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODUyMTk4LCJzdWIiOiI4MzMyMWU5Yi0wMGViLTQ5MTAtYjcxZC1mOTVlYTVmZTEyYzkiLCJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnt9LCJyb2xlIjoiYXV0aGVudGljYXRlZCJ9.hlqEvjgBdenX57ZHsHHICa5_vFgQhKptd4MSLTtFzd8",
+            token: userData?.access_token,
           },
           {
             headers: {
@@ -112,7 +111,9 @@ export default function App() {
           console.log(error.response.data);
         });
     }
-    getData();
+    if (userData != null) {
+      getData();
+    }
   }, []);
   return (
     <NativeBaseProvider>
@@ -132,64 +133,85 @@ export default function App() {
               drawerStyle: { backgroundColor: "#060606" },
             }}
           >
-
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={LoginScreen} />
-            <Drawer.Screen
-              name={admin ? "Admin" : "View receipts"}
-              component={admin ? AdminScreen : SavedReceipt}
-            />
+            <Drawer.Screen name="Login" component={LoginScreen} />
           </Drawer.Navigator>
-        ) : (
-          <Tab.Navigator
-            backgroundColor="#060606"
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer theme={MyTheme}>
+          {Platform.OS === "web" ? (
+            <Drawer.Navigator
+              backgroundColor="#060606"
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: "#060606",
+                  borderBottomColor: "#060606",
+                },
+                headerTintColor: "white",
+                drawerActiveBackgroundColor: "#363636",
+                drawerLabelStyle: { color: "#fff" },
+                drawerStyle: { backgroundColor: "#060606" },
+              }}
+            >
+              <Drawer.Screen name="Home" component={HomeScreen} />
+              <Drawer.Screen name="Profile" component={LoginScreen} />
+              <Drawer.Screen
+                name={admin ? "Admin" : "View receipts"}
+                component={admin ? AdminScreen : SavedReceipt}
+              />
+            </Drawer.Navigator>
+          ) : (
+            <Tab.Navigator
+              backgroundColor="#060606"
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName;
 
-                if (route.name === "Home") {
-                  iconName = focused ? "ios-home" : "ios-home-outline";
-                  size = 20;
-                } else if (route.name === "Profile") {
-                  iconName = focused ? "ios-person" : "ios-person-outline";
-                  size = 20;
-                } else if (route.name === "View receipts") {
-                  iconName = focused ? "ios-list" : "ios-list-outline";
-                  size = 23;
-                } else if (route.name === "Admin") {
-                  iconName = focused ? "ios-settings" : "ios-settings-outline";
-                  size = 20;
-                }
+                  if (route.name === "Home") {
+                    iconName = focused ? "ios-home" : "ios-home-outline";
+                    size = 20;
+                  } else if (route.name === "Profile") {
+                    iconName = focused ? "ios-person" : "ios-person-outline";
+                    size = 20;
+                  } else if (route.name === "View receipts") {
+                    iconName = focused ? "ios-list" : "ios-list-outline";
+                    size = 23;
+                  } else if (route.name === "Admin") {
+                    iconName = focused
+                      ? "ios-settings"
+                      : "ios-settings-outline";
+                    size = 20;
+                  }
 
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              headerStyle: {
-                backgroundColor: "#060606",
-                borderBottomColor: "#060606",
-                borderTopColor: "#060606",
-              },
+                  // You can return any component that you like here!
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                headerStyle: {
+                  backgroundColor: "#060606",
+                  borderBottomColor: "#060606",
+                  borderTopColor: "#060606",
+                },
 
-              headerTintColor: "white",
-              tabBarLabelStyle: { color: "white" },
-              tabBarActiveTintColor: "rgb(155, 81, 224)",
-              tabBarInactiveTintColor: "white",
+                headerTintColor: "white",
+                tabBarLabelStyle: { color: "white" },
+                tabBarActiveTintColor: "rgb(155, 81, 224)",
+                tabBarInactiveTintColor: "white",
 
-              tabBarStyle: {
-                backgroundColor: "#060606",
-                borderTopColor: "#060606",
-              },
-            })}
-          >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
-            <Tab.Screen
-              name={admin ? "Admin" : "View receipts"}
-              component={admin ? AdminScreen : SavedReceipt}
-            />
-          </Tab.Navigator>
-        )}
-      </NavigationContainer>
+                tabBarStyle: {
+                  backgroundColor: "#060606",
+                  borderTopColor: "#060606",
+                },
+              })}
+            >
+              <Tab.Screen name="Home" component={HomeScreen} />
+              <Tab.Screen name="Profile" component={ProfileScreen} />
+              <Tab.Screen
+                name={admin ? "Admin" : "View receipts"}
+                component={admin ? AdminScreen : SavedReceipt}
+              />
+            </Tab.Navigator>
+          )}
+        </NavigationContainer>
+      )}
 
       {/* <Text>bvhjsdbv</Text> */}
       {/* // <Box flex={1} alignItems="center" justifyContent="center" bg="red.100">
