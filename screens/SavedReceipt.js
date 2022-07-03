@@ -16,15 +16,24 @@ export function SavedReceipt({ navigaton }) {
           "https://cors-anywhere.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
           {
             token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODA1NjY1LCJzdWIiOiIzMTVjMTFhYi1kM2E2LTQ1MTAtODJlMy02N2M3MDBjYzQ3ZDIiLCJlbWFpbCI6ImdhbmVzaHllcEBlbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.ekqE8esJOPGR1d0sR3TND1_-8ySUuSN_NktdSzSkF-w",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODA5NzQ4LCJzdWIiOiIzMTVjMTFhYi1kM2E2LTQ1MTAtODJlMy02N2M3MDBjYzQ3ZDIiLCJlbWFpbCI6ImdhbmVzaHllcEBlbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.ZySM7zwneSFrGX9jMZzWfRJqcbrYgrkdnNyL2dfz2SU",
+          },
+          {
+            headers: {
+              "access-control-allow-origin": "*",
+              origin: "*",
+            },
           }
         )
         .then(function (response) {
+          if (response.data == false) {
+            return;
+          }
           console.log(response.data);
           setinvoices(response.data);
         })
         .catch(function (error) {
-          console.log(error);
+          console.log(error.response.data);
         });
     }
     getData();
@@ -33,7 +42,16 @@ export function SavedReceipt({ navigaton }) {
     <Box
       flex={1}
       flexDirection="row"
+      mx={{
+        base: 5,
+        md: 20,
+      }}
       flexWrap="wrap"
+      justifyContent={{
+        md: "space-between",
+        base: "center",
+      }}
+      alignItems="center"
       style={{ flex: 1, overflowX: "hidden" }}
     >
       {invoices.map((ele) => {

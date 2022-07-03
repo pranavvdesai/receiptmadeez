@@ -26,6 +26,7 @@ import {
   View,
   AspectRatio,
   Stack,
+  ScrollView,
 } from "native-base";
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,13 +42,65 @@ export function HomeScreen() {
       direction="column"
       bg="#181818"
     >
-      <Box maxWidth="100%">
+      <Box
+        maxWidth="100%"
+        display={{
+          base: "none",
+          md: "flex",
+        }}
+      >
         <HCard />
       </Box>
       <Box
+        _web={{
+          overflowX: "hidden",
+          display: "none",
+        }}
+        mt={{
+          base: "5",
+          md: "0",
+        }}
         flex={1}
         flexDirection="row"
-        mx="20"
+        mx={{
+          base: 5,
+          md: 20,
+        }}
+        flexWrap="wrap"
+        justifyContent={{
+          md: "space-between",
+          base: "center",
+        }}
+        alignItems="center"
+      >
+        <ScrollView
+          h="auto"
+          w={{
+            base: "100",
+            md: "0",
+          }}
+        >
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </ScrollView>
+      </Box>
+
+      <Box
+        _android={{
+          display: "none",
+        }}
+        mt={{
+          base: "5",
+          md: "0",
+        }}
+        flex={1}
+        flexDirection="row"
+        mx={{
+          base: 5,
+          md: 20,
+        }}
         flexWrap="wrap"
         justifyContent={{
           md: "space-between",

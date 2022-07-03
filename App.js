@@ -80,7 +80,7 @@ export default function App() {
             }}
           >
             <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="Profile" component={LoginScreen} />
             <Drawer.Screen name="View receipts" component={SavedReceipt} />
           </Drawer.Navigator>
         ) : (
