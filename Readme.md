@@ -22,3 +22,8 @@ It eliminates the concept of physical receipts for a product and is also a platf
 
 ## Screenshots(mobile)
 
+<a href="https://ibb.co/pdL0q9h"><img src="https://i.ibb.co/RcDv8Vj/Screenshot-20220703-124356-Expo-Go.jpg" alt="Screenshot-20220703-124356-Expo-Go" border="0" /></a>
+<a href="https://ibb.co/SvPwx01"><img src="https://i.ibb.co/DKtfbk6/Screenshot-20220703-124427-Expo-Go.jpg" alt="Screenshot-20220703-124427-Expo-Go" border="0" /></a>
+<a href="https://ibb.co/0YG5G5d"><img src="https://i.ibb.co/GC5m5mb/Screenshot-20220703-124645-Expo-Go.jpg" alt="Screenshot-20220703-124645-Expo-Go" border="0" /></a>
+<a href="https://ibb.co/jZTHsgJ"><img src="https://i.ibb.co/n8bRtzP/Screenshot-20220703-124652-Expo-Go.jpg" alt="Screenshot-20220703-124652-Expo-Go" border="0" /></a>
+
