@@ -69,12 +69,12 @@ const MyTheme = {
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 export default function App() {
-  const [userData, setuserData] = React.useState(null);
+  const [userData, setuserData] = React.useState();
   React.useEffect(() => {
     const getUser = async () => {
       try {
         let temp = JSON.parse(await AsyncStorage.getItem("user"));
-        console.log(userData, "ftyg");
+        //console.log(userData, "ftyg");
         if (!temp) return;
         setuserData(temp);
       } catch (error) {
@@ -111,10 +111,10 @@ export default function App() {
           console.log(error.response.data);
         });
     }
-    if (userData != null) {
+    if (userData) {
       getData();
     }
-  }, []);
+  }, [userData]);
   return (
     <NativeBaseProvider>
       {userData == null ? (
