@@ -20,6 +20,7 @@ import {
 } from "native-base";
 import NativeBaseIcon from "./components/NativeBaseIcon";
 import { Platform } from "react-native";
+
 // import Card from "./components/Card";
 // import VerticalCard from "./components/VerticalCard";
 import {
@@ -38,6 +39,7 @@ import {
 } from "@react-navigation/drawer";
 import LoginScreen from "./screens/LoginScreen";
 import { useColorScheme } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,38 +66,70 @@ const MyTheme = {
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 export default function App() {
+  const [userData, setuserData] = React.useState(null);
+  React.useEffect(() => {
+    const getUser = async () => {
+      try {
+        let temp = JSON.parse(await AsyncStorage.getItem("user"));
+        console.log(userData, "ftyg");
+        if (!temp) return;
+        setuserData(temp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, []);
   const scheme = useColorScheme();
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={MyTheme}>
-        {Platform.OS === "web" ? (
+      {userData == null ? (
+        <NavigationContainer theme={MyTheme}>
           <Drawer.Navigator
             backgroundColor="#060606"
             screenOptions={{
-              headerStyle: { backgroundColor: "#060606", borderBottomColor: "#060606" },
+              headerStyle: {
+                backgroundColor: "#060606",
+                borderBottomColor: "#060606",
+              },
               headerTintColor: "#fff",
               drawerActiveBackgroundColor: "#363636",
               drawerLabelStyle: { color: "#fff" },
               drawerStyle: { backgroundColor: "#060606" },
             }}
           >
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={LoginScreen} />
-            <Drawer.Screen name="View receipts" component={SavedReceipt} />
+            <Drawer.Screen name="Home" component={LoginScreen} />
           </Drawer.Navigator>
-        ) : (
-          <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
-            <Tab.Screen name="View receipts" component={SavedReceipt} />
-          </Tab.Navigator>
-        )}
-      </NavigationContainer>
-
-      {/* <Text>bvhjsdbv</Text> */}
-      {/* // <Box flex={1} alignItems="center" justifyContent="center" bg="red.100">
-      //   <Text>Open up App.js to start working on your app!</Text>
-      // </Box> */}
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer theme={MyTheme}>
+          {Platform.OS === "web" ? (
+            <Drawer.Navigator
+              backgroundColor="#060606"
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: "#060606",
+                  borderBottomColor: "#060606",
+                },
+                headerTintColor: "#fff",
+                drawerActiveBackgroundColor: "#363636",
+                drawerLabelStyle: { color: "#fff" },
+                drawerStyle: { backgroundColor: "#060606" },
+              }}
+            >
+              <Drawer.Screen name="Home" component={HomeScreen} />
+              <Drawer.Screen name="Profile" component={LoginScreen} />
+              <Drawer.Screen name="View receipts" component={SavedReceipt} />
+            </Drawer.Navigator>
+          ) : (
+            <Tab.Navigator>
+              <Tab.Screen name="Home" component={HomeScreen} />
+              <Tab.Screen name="Profile" component={ProfileScreen} />
+              <Tab.Screen name="View receipts" component={SavedReceipt} />
+            </Tab.Navigator>
+          )}
+        </NavigationContainer>
+      )}
     </NativeBaseProvider>
   );
 }
@@ -117,3 +151,12 @@ function ToggleDarkMode() {
     </HStack>
   );
 }
+
+//  {
+//    /* <Text>bvhjsdbv</Text> */
+//  }
+//  {
+//    /* // <Box flex={1} alignItems="center" justifyContent="center" bg="red.100">
+//       //   <Text>Open up App.js to start working on your app!</Text>
+//       // </Box> */
+//  }
