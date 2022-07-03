@@ -13,7 +13,7 @@ export function SavedReceipt({ navigaton }) {
     function getData() {
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
+          "https://proxyinvoicebill.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
           {
             token:
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODQ2MzAwLCJzdWIiOiIzMTVjMTFhYi1kM2E2LTQ1MTAtODJlMy02N2M3MDBjYzQ3ZDIiLCJlbWFpbCI6ImdhbmVzaHllcEBlbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.1dUJJDJZSNIvIf0MQjBCq9t-KT8K6rlOYG7_akRbfYE",
