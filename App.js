@@ -138,6 +138,9 @@ export default function App() {
                 } else if (route.name === "View receipts") {
                   iconName = focused ? "ios-list" : "ios-list-outline";
                   size = 23;
+                } else if (route.name === "Admin") {
+                  iconName = focused ? "ios-settings" : "ios-settings-outline";
+                  size = 20;
                 }
 
                 // You can return any component that you like here!
@@ -162,8 +165,10 @@ export default function App() {
           >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
-            <Tab.Screen name="View receipts" component={SavedReceipt} />
-            <Tab.Screen name="Admin Screen" component={AdminScreen} />
+            <Tab.Screen
+              name={admin ? "Admin" : "View receipts"}
+              component={admin ? AdminScreen : SavedReceipt}
+            />
           </Tab.Navigator>
         )}
       </NavigationContainer>
