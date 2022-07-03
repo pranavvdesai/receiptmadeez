@@ -6,17 +6,18 @@ import { NativeBaseProvider } from "native-base";
 import ReceiptCard from "../components/ReceiptCard";
 import { Modal } from "native-base";
 import axios from "axios";
+import AdminCard from "../components/AdminCard";
 
-export function SavedReceipt({ navigaton }) {
-  const [invoices, setinvoices] = React.useState([]);
+export default function AdminScreen({ navigaton }) {
+  const [warrants, setwarrants] = React.useState([]);
   React.useEffect(() => {
     function getData() {
       axios
         .post(
-          "https://proxyinvoicebill.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
+          "https://cors-anywhere.herokuapp.com/https://invoiceg.ganeshgouru50.workers.dev",
           {
             token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODQ2MzAwLCJzdWIiOiIzMTVjMTFhYi1kM2E2LTQ1MTAtODJlMy02N2M3MDBjYzQ3ZDIiLCJlbWFpbCI6ImdhbmVzaHllcEBlbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.1dUJJDJZSNIvIf0MQjBCq9t-KT8K6rlOYG7_akRbfYE",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU2ODUyMTk4LCJzdWIiOiI4MzMyMWU5Yi0wMGViLTQ5MTAtYjcxZC1mOTVlYTVmZTEyYzkiLCJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnt9LCJyb2xlIjoiYXV0aGVudGljYXRlZCJ9.hlqEvjgBdenX57ZHsHHICa5_vFgQhKptd4MSLTtFzd8",
           },
           {
             headers: {
@@ -29,8 +30,8 @@ export function SavedReceipt({ navigaton }) {
           if (response.data == false) {
             return;
           }
-          console.log(response.data);
-          setinvoices(response.data.list);
+          console.log(response.data.list);
+          setwarrants(response.data.list);
         })
         .catch(function (error) {
           console.log(error.response.data);
@@ -66,14 +67,13 @@ export function SavedReceipt({ navigaton }) {
             md: "0",
           }}
         >
-          {invoices.map((ele) => {
+          {warrants.map((ele) => {
             return (
-              <ReceiptCard
-                key={ele.product_id}
+              <AdminCard
+                key={ele.id}
                 id={ele.product_id}
-                name={ele.product_name}
-                pd={ele.purchase_date}
-                ed={ele.expiry_date}
+                name={ele.desc}
+                pd={ele.created_at}
               />
             );
           })}
@@ -98,14 +98,13 @@ export function SavedReceipt({ navigaton }) {
         alignItems="center"
         style={{ flex: 1, overflowX: "hidden" }}
       >
-        {invoices.map((ele) => {
+        {warrants.map((ele) => {
           return (
-            <ReceiptCard
-              key={ele.product_id}
+            <AdminCard
+              key={ele.id}
               id={ele.product_id}
-              name={ele.product_name}
-              pd={ele.purchase_date}
-              ed={ele.expiry_date}
+              name={ele.desc}
+              pd={ele.created_at}
             />
           );
         })}
