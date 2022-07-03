@@ -109,7 +109,6 @@ export default function AdminScreen({ navigaton }) {
           );
         })}
       </Box>
-      <Text color="white">You are not authorized to view this page</Text>
     </>
   );
 }
